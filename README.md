@@ -26,26 +26,38 @@ Em desevolvimento...
 O projeto foi desenvolvido utilizando as seguintes tecnologias:
 
 - React Native;
--  Expo;
-- 
-- 
-
----
+- Expo;
+-
+- ***
 
 ## 📁 Como baixar o projeto
 
 ```bash
 # Clonar o repositório
-  $ 
+  $
 
 # Entrar na pasta do projeto
-  $ 
+  $
 
 # Instalar as dependências do projeto
-  $ 
+  $
+
+# Instalar globalmente o json-server
+  $ npm install -g json-server
+
+# Alterar baseUrl (./src/services/api.ts)
+  $  baseURL: "http://seuIp:3333",
+        Exemplo:
+          baseURL: "http://192.168.15.10:3333",
+
+#Rodar o json-server
+  $ json-server ./src/services/server.json --host seuIp --port 3333 --delay 700
+        Exemplo:
+          json-server ./src/services/server.json --host 192.168.15.10 --port 3333 --delay 700
 
 # Rodar a aplicação
-  $ Android: 
+  $ Android:
 
-  $ IOS: 
+  $ IOS:
+
 ```

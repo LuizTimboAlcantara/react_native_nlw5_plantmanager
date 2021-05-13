@@ -9,8 +9,10 @@ import {
   TouchableWithoutFeedback,
   Platform,
   Keyboard,
+  Alert,
 } from "react-native";
 import { useNavigation } from "@react-navigation/core";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import { Button } from "../components/Button";
 
@@ -38,16 +40,18 @@ export function UserIdentification() {
     setName(value);
   }
 
-  function handleSubmit() {
+  async function handleSubmit() {
+    if (!name) {
+      Alert.alert("Me diz como devo chamar você 😉");
+    }
+
+    await AsyncStorage.setItem("@plantmanager:user", name || "");
     navigation.navigate("Confirmation");
   }
 
   return (
     <SafeAreaView style={styles.container}>
-      <KeyboardAvoidingView
-        style={styles.container}
-        behavior={Platform.OS === "ios" ? "padding" : "height"}
-      >
+      <KeyboardAvoidingView style={styles.container} behavior={Platform.OS === "ios" ? "padding" : "height"}>
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
           <View style={styles.content}>
             <View style={styles.form}>
@@ -58,10 +62,7 @@ export function UserIdentification() {
               </View>
 
               <TextInput
-                style={[
-                  styles.input,
-                  (isFocused || isFilled) && { borderColor: colors.green },
-                ]}
+                style={[styles.input, (isFocused || isFilled) && { borderColor: colors.green }]}
                 placeholder="Digite um nome"
                 onBlur={handleInputBlur}
                 onFocus={handleInputFocus}

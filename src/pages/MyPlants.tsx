@@ -8,8 +8,10 @@ import { PlantProps, loadPlant } from "../libs/storage";
 import Waterdrop from "../assets/waterdrop.png";
 
 import colors from "../styles/colors";
+import fonts from "../styles/fonts";
 
 import { Header } from "../components/Header";
+import { PlantCardSecondary } from "../components/PlantCardSecondary";
 
 export function MyPlants() {
   const [myPlants, setMyPlants] = useState<PlantProps[]>([]);
@@ -51,7 +53,7 @@ export function MyPlants() {
         <FlatList
           keyExtractor={(item) => item.id}
           data={myPlants}
-          renderItem={(item) => <Text>Elemento</Text>}
+          renderItem={(item) => <PlantCardSecondary data={item} />}
           showsVerticalScrollIndicator={false}
           contentContainerStyle={{ flex: 1 }}
         />
@@ -69,9 +71,32 @@ const styles = StyleSheet.create({
     paddingTop: 50,
     backgroundColor: colors.background,
   },
-  spotlight: {},
-  spotlightImage: {},
-  spotlightText: {},
-  plants: {},
-  plantsTitle: {},
+  spotlight: {
+    backgroundColor: colors.blue_light,
+    paddingHorizontal: 20,
+    borderRadius: 20,
+    height: 110,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
+  spotlightImage: {
+    width: 60,
+    height: 60,
+  },
+  spotlightText: {
+    flex: 1,
+    color: colors.blue,
+    paddingHorizontal: 20,
+  },
+  plants: {
+    flex: 1,
+    width: "100%",
+  },
+  plantsTitle: {
+    fontSize: 24,
+    fontFamily: fonts.heading,
+    color: colors.heading,
+    marginVertical: 20,
+  },
 });

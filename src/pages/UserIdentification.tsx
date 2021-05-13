@@ -45,13 +45,27 @@ export function UserIdentification() {
       Alert.alert("Me diz como devo chamar você 😉");
     }
 
-    await AsyncStorage.setItem("@plantmanager:user", name || "");
-    navigation.navigate("Confirmation");
+    try {
+      await AsyncStorage.setItem("@plantmanager:user", name || "");
+      navigation.navigate("Confirmation", {
+        title: "Prontinho",
+        subtitle:
+          "Agora vamos começar a cuidar das suas plantinhas com muito cuidado.",
+        buttonTitle: "Começar",
+        icon: "smile",
+        nextScreen: "PlantSelect",
+      });
+    } catch {
+      Alert.alert("Não foi possível salvar o seu nome 🥲");
+    }
   }
 
   return (
     <SafeAreaView style={styles.container}>
-      <KeyboardAvoidingView style={styles.container} behavior={Platform.OS === "ios" ? "padding" : "height"}>
+      <KeyboardAvoidingView
+        style={styles.container}
+        behavior={Platform.OS === "ios" ? "padding" : "height"}
+      >
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
           <View style={styles.content}>
             <View style={styles.form}>
@@ -62,7 +76,10 @@ export function UserIdentification() {
               </View>
 
               <TextInput
-                style={[styles.input, (isFocused || isFilled) && { borderColor: colors.green }]}
+                style={[
+                  styles.input,
+                  (isFocused || isFilled) && { borderColor: colors.green },
+                ]}
                 placeholder="Digite um nome"
                 onBlur={handleInputBlur}
                 onFocus={handleInputFocus}

@@ -53,7 +53,7 @@ O projeto foi desenvolvido utilizando as seguintes tecnologias:
 #Rodar o json-server
   $ json-server ./src/services/server.json --host seuIp --port 3333 --delay 700
         Exemplo:
-          json-server ./src/services/server.json --host 192.168.15.10 --port 3333 --delay 700
+          json-server ./src/services/server.json --host 192.168.15.8 --port 3333 --delay 700
 
 # Rodar a aplicação
   $ Android:

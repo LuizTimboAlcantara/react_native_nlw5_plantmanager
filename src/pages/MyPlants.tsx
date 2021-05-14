@@ -51,7 +51,7 @@ export function MyPlants() {
         <Text style={styles.plantsTitle}>Próximas regadas</Text>
 
         <FlatList
-          keyExtractor={(item) => item.id}
+          keyExtractor={(item) => String(item.id)}
           data={myPlants}
           renderItem={(item) => <PlantCardSecondary data={item} />}
           showsVerticalScrollIndicator={false}
